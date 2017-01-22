@@ -1,24 +1,14 @@
-﻿-- Table: public.flat
+﻿-- Table: flat
 
--- DROP TABLE public.flat;
+DROP SEQUENCE flatid_seq;
+CREATE SEQUENCE flatid_seq;
 
+DROP TABLE flat;
 CREATE TABLE public.flat
 (
-    "ID_flat" integer NOT NULL,
-    flat "char",
-    "ID_building" integer,
-    CONSTRAINT flat_pkey PRIMARY KEY ("ID_flat"),
-    CONSTRAINT "ID_building" FOREIGN KEY ("ID_building")
-        REFERENCES public.building ("ID_building") MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
-WITH (
-    OIDS = FALSE
-)
-TABLESPACE pg_default;
+    flatid integer NOT NULL PRIMARY KEY DEFAULT NEXTVAL('flatid_seq'),
+    flatnumber varchar(10),
+    buildingid integer REFERENCES building
+);
 
-ALTER TABLE public.flat
-    OWNER to postgres;
-COMMENT ON TABLE public.flat
-    IS 'info about flat';
+INSERT INTO flat (flatnumber, buildingid) VALUES ('1', 1);

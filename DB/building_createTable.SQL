@@ -1,20 +1,18 @@
-﻿-- Table: public.building
+﻿-- Table: building
 
--- DROP TABLE public.building;
+DROP SEQUENCE buildingid_seq;
+CREATE SEQUENCE buildingid_seq;
 
-CREATE TABLE public.building
+DROP TABLE building;
+CREATE TABLE building
 (
-    "ID_building" integer NOT NULL,
-    country "char",
-    region "char",
-    city "char",
-    "number" "char",
-    CONSTRAINT "ID_building" PRIMARY KEY ("ID_building")
-)
-WITH (
-    OIDS = FALSE
-)
-TABLESPACE pg_default;
+    buildingid integer NOT NULL PRIMARY KEY DEFAULT NEXTVAL('buildingid_seq'),
+    country varchar(64),
+    region varchar(64),
+    city varchar(64),
+    street varchar(64),
+    build varchar(64)
+);
 
-ALTER TABLE public.building
-    OWNER to postgres;
+INSERT INTO building (country, region, city, street, build)
+VALUES ('Украина', 'Днепропетровская', 'Днепр', 'Любарского', '84а');

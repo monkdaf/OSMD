@@ -1,26 +1,14 @@
-﻿-- Table: public.coolwater
+﻿-- Table: coolwater
 
--- DROP TABLE public.coolwater;
+DROP TABLE coolwater;
 
-CREATE TABLE public.coolwater
+CREATE TABLE coolwater
 (
-    "ID_flat" integer NOT NULL,
+    flatid integer NOT NULL REFERENCES flat,
     value real,
     date date,
-    "ID_user" integer NOT NULL,
-    CONSTRAINT "ID_flat" FOREIGN KEY ("ID_flat")
-        REFERENCES public.flat ("ID_flat") MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
-    CONSTRAINT "ID_user" FOREIGN KEY ("ID_user")
-        REFERENCES public."user" ("ID_user") MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
-WITH (
-    OIDS = FALSE
-)
-TABLESPACE pg_default;
+    userid integer NOT NULL REFERENCES users
+);
 
-ALTER TABLE public.coolwater
-    OWNER to postgres;
+INSERT INTO coolwater (flatid, value, date, userid)
+VALUES (1, 25987.6, '2017-01-22', 1);
