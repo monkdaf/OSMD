@@ -1,7 +1,7 @@
 // @flow
 
-import half from '../src/index.js';
+import half from '../src/index';
 
-test('halt', () => {
+test('test is work!', () => {
   expect(half(6)).toBe(3);
 });
