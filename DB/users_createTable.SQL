@@ -11,6 +11,7 @@ CREATE TABLE users
 (
     userid integer NOT NULL PRIMARY KEY DEFAULT NEXTVAL('userid_seq'),
     username varchar(64) NOT NULL,
+    displayname varChar(64),
     password varChar(64),
     email varchar(64),
     role role_type DEFAULT 'user',
